@@ -1,15 +1,14 @@
 package JBDL63.JDBCTemplate.controller;
 
+import java.util.List;
+import java.util.ArrayList;
 import JBDL63.JDBCTemplate.model.Student;
 import JBDL63.JDBCTemplate.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -25,4 +24,10 @@ public class StudentController {
                     , student.getName()), HttpStatus.OK);
         return new ResponseEntity<>("Couldn't inserted", HttpStatus.BAD_REQUEST);
    }
+
+   @GetMapping
+    public ResponseEntity<List<Student>> fetchAllStudent(){
+         return new ResponseEntity<>(studentService.fetchAllStudent(), HttpStatus.OK);
+   }
+
 }
