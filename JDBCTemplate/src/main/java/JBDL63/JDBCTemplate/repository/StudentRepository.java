@@ -25,7 +25,7 @@ public class StudentRepository { //This Repository class is responsible for comm
                 .id(resultSet.getInt("id"))
                 .name(resultSet.getString("name"))
                 .department(resultSet.getString("department"))
-                .marks(resultSet.getInt("marks"))
+                .marks(resultSet.getDouble("marks"))
                 .build());
     }
 
@@ -36,7 +36,7 @@ public class StudentRepository { //This Repository class is responsible for comm
                 .id(resultSet.getInt("id"))
                 .name(resultSet.getString("name"))
                 .department(resultSet.getString("department"))
-                .marks(resultSet.getInt("marks"))
+                .marks(resultSet.getDouble("marks"))
                 .build(), id);
     }
 

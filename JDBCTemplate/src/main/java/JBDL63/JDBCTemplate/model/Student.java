@@ -18,6 +18,6 @@ public class Student {
 
     private String department;
 
-    private Integer marks;
+    private Double marks;
 
 }
