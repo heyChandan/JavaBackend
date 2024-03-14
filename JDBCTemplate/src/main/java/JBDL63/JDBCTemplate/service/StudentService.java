@@ -41,4 +41,9 @@ public class StudentService {
         }
         return s;
     }
+
+    public Integer deleteById(int id){
+        log.info("delete request accepted");
+        return studentRepository.deleteById(id);
+    }
 }

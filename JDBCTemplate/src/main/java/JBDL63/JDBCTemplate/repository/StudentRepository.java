@@ -40,4 +40,9 @@ public class StudentRepository { //This Repository class is responsible for comm
                 .build(), id);
     }
 
+    public Integer deleteById(int id){
+        String deleteQuery = "DELETE FROM student WHERE id=?";
+        return this.jdbcTemplate.update(deleteQuery,id);
+    }
+
 }

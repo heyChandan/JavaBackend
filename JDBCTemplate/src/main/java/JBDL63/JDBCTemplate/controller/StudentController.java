@@ -35,4 +35,12 @@ public class StudentController {
         return new ResponseEntity<>(studentService.fetchById(id), HttpStatus.OK);
    }
 
+   @GetMapping("/delete/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable int id){
+       if(studentService.deleteById(id) == 1){
+           return new ResponseEntity<>(String.format("Student with id: %d, deleted from table successfully",id),HttpStatus.OK);
+       }
+       return new ResponseEntity<>(String.format("Student not found with id: %d",id), HttpStatus.BAD_REQUEST);
+   }
+
 }
