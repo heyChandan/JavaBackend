@@ -43,4 +43,11 @@ public class StudentController {
        return new ResponseEntity<>(String.format("Student not found with id: %d",id), HttpStatus.BAD_REQUEST);
    }
 
+   @PutMapping
+    public ResponseEntity<String> updateStudent(@RequestBody Student student){
+       if(studentService.updateStudent(student) == 1)
+           return new ResponseEntity<>(String.format("Student with id: %d updated successfully",student.getId()),HttpStatus.OK);
+       return new ResponseEntity<>(String.format("Student with id: %d not exist",student.getId()),HttpStatus.BAD_REQUEST);
+   }
+
 }

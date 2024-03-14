@@ -45,4 +45,19 @@ public class StudentRepository { //This Repository class is responsible for comm
         return this.jdbcTemplate.update(deleteQuery,id);
     }
 
+    public int updateStudent(Student student){
+        String updateQuery = "UPDATE student " +
+                                "SET name=?," +
+                                "department=?, " +
+                                "marks=?" +
+                            "WHERE id=?";
+
+        return this.jdbcTemplate.update(updateQuery,
+                student.getName(),
+                student.getDepartment(),
+                student.getMarks(),
+                student.getId()
+        );
+    }
+
 }

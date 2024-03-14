@@ -46,4 +46,9 @@ public class StudentService {
         log.info("delete request accepted");
         return studentRepository.deleteById(id);
     }
+
+    public int updateStudent(Student student){
+        log.info("Update request accepted");
+        return studentRepository.updateStudent(student);
+    }
 }
