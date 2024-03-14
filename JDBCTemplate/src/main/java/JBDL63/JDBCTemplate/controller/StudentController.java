@@ -30,4 +30,9 @@ public class StudentController {
          return new ResponseEntity<>(studentService.fetchAllStudent(), HttpStatus.OK);
    }
 
+   @GetMapping("{id}")
+   public ResponseEntity<Student> fetchById(@PathVariable int id){
+        return new ResponseEntity<>(studentService.fetchById(id), HttpStatus.OK);
+   }
+
 }

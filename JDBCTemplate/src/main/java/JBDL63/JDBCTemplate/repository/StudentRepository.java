@@ -22,10 +22,22 @@ public class StudentRepository { //This Repository class is responsible for comm
         String selectQueryForFetchAll = "SELECT * from Student";
         return this.jdbcTemplate.query(selectQueryForFetchAll,(resultSet,rowNo)->
                 Student.builder()
-                        .id(resultSet.getInt("id"))
-                        .name(resultSet.getString("name"))
-                        .department(resultSet.getString("department"))
-                        .marks(resultSet.getInt("marks"))
+                .id(resultSet.getInt("id"))
+                .name(resultSet.getString("name"))
+                .department(resultSet.getString("department"))
+                .marks(resultSet.getInt("marks"))
                 .build());
     }
+
+    public Student fetchById(Integer id){
+        String selectQueryForFetchAll = "SELECT * from Student WHERE id = ?";
+        return this.jdbcTemplate.queryForObject(selectQueryForFetchAll,(resultSet,rowNo)->
+                Student.builder()
+                .id(resultSet.getInt("id"))
+                .name(resultSet.getString("name"))
+                .department(resultSet.getString("department"))
+                .marks(resultSet.getInt("marks"))
+                .build(), id);
+    }
+
 }

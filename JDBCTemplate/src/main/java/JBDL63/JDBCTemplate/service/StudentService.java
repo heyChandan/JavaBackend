@@ -5,6 +5,7 @@ import JBDL63.JDBCTemplate.repository.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +26,19 @@ public class StudentService {
         List<Student> li = studentRepository.fetchAllStudent();
 
         if(li.isEmpty()) {
-            log.info("Student not found");
-            throw new RuntimeException("Student not found");
+            log.info("No student exist");
+            throw new RuntimeException("No student exist");
         }
         return li;
+    }
+
+    public Student fetchById(int id){
+        Student  s = studentRepository.fetchById(id);
+
+        if(s==null){
+            log.info("No student exist");
+            throw new RuntimeException("No Student exist");
+        }
+        return s;
     }
 }
