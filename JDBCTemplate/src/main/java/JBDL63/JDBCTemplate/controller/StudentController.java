@@ -4,21 +4,24 @@ import java.util.List;
 import java.util.ArrayList;
 import JBDL63.JDBCTemplate.model.Student;
 import JBDL63.JDBCTemplate.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
 @RequestMapping("/students")
+@Validated
 public class StudentController {
 
     @Autowired
     private StudentService studentService;
     @PostMapping
-   public ResponseEntity<String> addNewStudent(@RequestBody Student student){
+   public ResponseEntity<String> addNewStudent(@Valid @RequestBody Student student){
         if(studentService.createNewStudent(student) == 1)
             return new ResponseEntity<>(String.format("new student with name the Name: %s is added"
                     , student.getName()), HttpStatus.OK);

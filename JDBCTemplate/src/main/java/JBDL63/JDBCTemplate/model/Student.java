@@ -1,5 +1,6 @@
 package JBDL63.JDBCTemplate.model;
 
+import jakarta.validation.constraints.DecimalMin;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,6 +19,7 @@ public class Student {
 
     private String department;
 
+    @DecimalMin(value="60",message = "Minimum marks required is 60")
     private Double marks;
 
 }
