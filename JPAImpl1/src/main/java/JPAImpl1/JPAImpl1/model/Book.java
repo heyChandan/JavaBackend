@@ -1,7 +1,6 @@
 package JPAImpl1.JPAImpl1.model;
 
 import jakarta.persistence.*;
-import jdk.jfr.Timestamp;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,8 +12,8 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Builder
+@Entity
 @Table(name="books" ,
         uniqueConstraints =  {
             @UniqueConstraint(name = "bookName_Unique",
@@ -35,7 +34,7 @@ public class Book {
     private String author;
 
     @Column(name="year",unique = true)
-    private int publicationYear;
+    private String publicationYear;
 
     @CreationTimestamp
     private LocalDateTime insertTime;
