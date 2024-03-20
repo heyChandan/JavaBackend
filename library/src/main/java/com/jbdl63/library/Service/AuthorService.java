@@ -11,6 +11,7 @@ import org.springframework.boot.context.config.ConfigDataLocationNotFoundExcepti
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -47,5 +48,19 @@ public class AuthorService {
     public void deleteById(Integer authorId) {
         Author author = authorRepository.findById(authorId).get();
         authorRepository.delete(author);
+    }
+
+    public void uploadAuthorsDataToDatabase(String fileContent) {
+        List<String> authorsData = List.of(fileContent.split("\n"));
+        List<Author> authors = new ArrayList<>();
+        for(int i = 1; i < authorsData.size(); i++) {
+            String[] row = authorsData.get(i).split(",");
+            authors.add(Author.builder()
+                    .authorId(Integer.valueOf(row[0]))
+                    .authorName(row[1])
+                    .address(row[2])
+                    .build());
+        }
+        authorRepository.saveAll(authors);
     }
 }
