@@ -14,8 +14,8 @@ import java.util.Map;
 
 @ControllerAdvice
 @Slf4j
-public class GlobalExcpetionHandler {
-@ExceptionHandler(MethodArgumentNotValidException.class)
+public class GlobalExcepetionHandler {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> errorHandler(MethodArgumentNotValidException e, HttpServletRequest httpServletRequest){
         Map<String, String> errorInfo = new LinkedHashMap<>();
 
