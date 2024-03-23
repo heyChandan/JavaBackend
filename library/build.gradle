@@ -29,12 +29,12 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-validation:3.2.1'
-	// https://mvnrepository.com/artifact/org.apache.commons/commons-csv
 	implementation 'org.apache.commons:commons-csv:1.9.0'
-	// https://mvnrepository.com/artifact/junit/junit
 	testImplementation 'junit:junit:4.13.2'
-	// https://mvnrepository.com/artifact/org.mockito/mockito-core
 	testImplementation 'org.mockito:mockito-core:5.11.0'
+	implementation 'redis.clients:jedis:5.1.0'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis:3.2.2'
+
 
 
 
