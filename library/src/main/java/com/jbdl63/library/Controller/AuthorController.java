@@ -45,7 +45,7 @@ public class AuthorController {
 
     @GetMapping("/{name}")
     @Cacheable(value = "authors", key = "#name")
-    public Author fetchAuthorByName(@PathVariable String name){
+    public Author fetchAuthorByName(@PathVariable("name") String name){
         if(!isEmpty(name))
             return authorService.fetchAuthorByName(name);
         throw  new BadRequestException("Please Send Author name");
@@ -65,7 +65,7 @@ public class AuthorController {
 
     @PutMapping
     @Validated
-    @CachePut
+    @CachePut(value = "authors", key = "#name")
     public Author updateAuthorAddress(@RequestBody @Valid UpdateAuthorDto updateAuthorDto){
         return authorService.updateAuthorAddress(updateAuthorDto);
     }
