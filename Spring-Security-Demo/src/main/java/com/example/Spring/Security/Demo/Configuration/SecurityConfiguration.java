@@ -47,12 +47,12 @@ public class SecurityConfiguration {
     public SecurityFilterChain getSecurityFilterChain(HttpSecurity http) throws Exception{
         return http
                 .csrf( csrf-> csrf.disable())
-                .authorizeHttpRequests(
-                        auth ->
-                                auth.requestMatchers("/users/allowedToAll").permitAll()
-                                .requestMatchers("/users/allowedToAdmin").hasRole("ADMIN")
-                                .requestMatchers("/users/allowedToUser").hasRole("USER")
-                )
+//                .authorizeHttpRequests(
+//                        auth ->
+//                                auth.requestMatchers("/users/allowedToAll").permitAll()
+//                                .requestMatchers("/users/allowedToAdmin").hasRole("ADMIN")
+//                                .requestMatchers("/users/allowedToUser").hasRole("USER")
+//                )
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }

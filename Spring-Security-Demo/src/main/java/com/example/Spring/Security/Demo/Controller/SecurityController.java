@@ -15,11 +15,13 @@ public class SecurityController {
     }
 
     @GetMapping("/allowedToAdmin")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String getAdminString(){
         return "Allowed To Admin Only";
     }
 
     @GetMapping("/allowedToUser")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public String getUserString(){
         return "Allowed To User Only";
     }
