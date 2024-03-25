@@ -22,12 +22,12 @@ public class SecurityConfiguration {
     @Bean
     public UserDetailsService getUserDetailsService(PasswordEncoder passwordEncoder){
         UserDetails admin = User.withUsername("Chandan")
-                .password(passwordEncoder.encode("12345"))
+                .password(passwordEncoder.encode("admin"))
                 .roles("ADMIN")
                 .build();
 
         UserDetails user = User.withUsername("Jyoti")
-                .password(passwordEncoder.encode("12"))
+                .password(passwordEncoder.encode("user"))
                 .roles("USER")
                 .build();
 
@@ -53,7 +53,7 @@ public class SecurityConfiguration {
                                 .requestMatchers("/users/allowedToAdmin").hasRole("ADMIN")
                                 .requestMatchers("/users/allowedToUser").hasRole("USER")
                 )
-                .formLogin(Customizer.withDefaults())
+                .httpBasic(Customizer.withDefaults())
                 .build();
     }
 }
