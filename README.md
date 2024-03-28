@@ -1,12 +1,12 @@
 # JavaBackend
-Welcome to #JavaBackend repository! Here you will find all of my SpringBoot backend practice code, projects, which includes:
+Welcome to #JavaBackend repository! Here you will find all of my backend practice code, projects (SpringBoot), which includes:
 1. demo
 2. JDBCTemplate
 3. JPAImpl1
 4. library
 5. Spring-Security-Demo
 6. SpringBootOAuth
-7. apacheKafkaDemoProducer
+7. apacheKafkaDemoProducer,
    apacheKafkaDemoConsumer
 9. Wallet
 
