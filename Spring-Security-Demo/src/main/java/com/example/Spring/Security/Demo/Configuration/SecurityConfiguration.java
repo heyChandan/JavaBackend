@@ -1,8 +1,10 @@
 package com.example.Spring.Security.Demo.Configuration;
 
+import com.example.Spring.Security.Demo.Service.UserInfoDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -16,22 +18,23 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfiguration {
 
     //Authentication
     @Bean
     public UserDetailsService getUserDetailsService(PasswordEncoder passwordEncoder){
-        UserDetails admin = User.withUsername("Chandan")
-                .password(passwordEncoder.encode("admin"))
-                .roles("ADMIN")
-                .build();
-
-        UserDetails user = User.withUsername("Jyoti")
-                .password(passwordEncoder.encode("user"))
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(admin, user);
+//        UserDetails admin = User.withUsername("Chandan")
+//                .password(passwordEncoder.encode("admin"))
+//                .roles("ADMIN")
+//                .build();
+//
+//        UserDetails user = User.withUsername("Jyoti")
+//                .password(passwordEncoder.encode("user"))
+//                .roles("USER")
+//                .build();
+//        return new InMemoryUserDetailsManager(admin, user);
+        return new UserInfoDetailsService();
     }
 
     //Encryption

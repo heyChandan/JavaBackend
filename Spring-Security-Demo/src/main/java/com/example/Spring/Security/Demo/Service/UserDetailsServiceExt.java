@@ -12,14 +12,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceExt implements UserDetails {
+public class UserDetailsServiceExt implements UserDetails {
 
     private String password;
-    private String username;
-    List<GrantedAuthority> roles;
 
-    public UserServiceExt(UserData userData){
-        this.password = userData.getUsername();
+    private String username;
+
+    private List<GrantedAuthority> roles;
+
+    public UserDetailsServiceExt(UserData userData){
+        this.password = userData.getPassword();
         this.username = userData.getUsername();
         this.roles = Arrays.stream(userData.getRoles().split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
