@@ -4,6 +4,7 @@ package com.jbdl.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -28,17 +29,26 @@ public class Wallet {
     @Column(nullable = false)
     private Double balance;
 
-    @Column(nullable = false)
-    private Integer dailyLimit;
 
     @Column(nullable = false)
-    private Long dailyTransactionLimit;
+    private Long dailyLimit;
+
+    @Column(nullable = false)
+    private Integer dailyTransactionLimit;
 
     @CreationTimestamp
     private LocalDateTime createdDate;
 
     @UpdateTimestamp
     private LocalDateTime updatedDate;
+
+    public Wallet(Long userId){
+        this.userId = userId;
+        this.balance = 0.0;
+        this.dailyLimit = 10000L;
+        this.dailyTransactionLimit = 10;
+
+    }
 
 //    2. Wallet:
 //

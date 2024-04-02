@@ -32,7 +32,7 @@ public class UserOperationsService {
     public UserResponseDto createUserAccount(User user) throws JsonProcessingException {
         User savedUser = userRepository.save(user);
         //This Map Object message will be sent
-        Map<String,String> walletCreationRequest = Map.of("userId", savedUser.getId().toString());
+        Map<String,Long> walletCreationRequest = Map.of("userId", savedUser.getId());
         log.info( String.format("User Account is created for userId %d ,and userName %s", user.getId(), user.getUserFullName()));
         Future<SendResult<String, String>> send = kafkaTemplate.send(TopicConstants.USER_CREATION_TOPIC, savedUser.getId().toString(), objectMapper.writeValueAsString(walletCreationRequest));
         return UserResponseDto.builder()
