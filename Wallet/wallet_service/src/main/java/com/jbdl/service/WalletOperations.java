@@ -35,7 +35,7 @@ public class WalletOperations {
         Wallet newWallet = new Wallet(userId);
         log.info(String.format("New Wallet Details for user Id: %d are wallet: %s", userId, newWallet.toString()));
         Wallet newCreatedWallet = walletRepository.save(newWallet);
-        log.info(String.format("New Wallet Details for user Id: %d are wallet: %s", userId, newCreatedWallet.toString()));
+        log.info(String.format("Saved Wallet Details for user Id: %d are wallet: %s", userId, newCreatedWallet.toString()));
 
         SendMailNotification sendMailNotification = SendMailNotification.builder()
                 .receiverMailId(receivedData.getUserEmailId())

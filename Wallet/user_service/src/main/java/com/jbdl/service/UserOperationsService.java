@@ -44,4 +44,22 @@ public class UserOperationsService {
                 .user(savedUser)
                 .build();
     }
+
+    public Boolean checkUserById(Long userId) {
+           return userRepository.existsById(userId);
+    }
+
+    public User fetchUserById(Long userId) {
+        log.info("Fetch request received for user Id:{}",userId);
+        return userRepository.findById(userId).get();
+    }
+
+    public String deleteUser(Long userId) {
+        Boolean exist = userRepository.existsById(userId);
+        if(exist){
+        userRepository.deleteById(userId);
+        return String.format("User with id : %d is deleted", userId);
+        }
+        return String.format("User with id : %d is not exist", userId);
+    }
 }

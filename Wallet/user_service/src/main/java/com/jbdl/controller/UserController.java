@@ -6,14 +6,12 @@ import com.jbdl.model.User;
 import com.jbdl.service.UserOperationsService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.common.protocol.types.Field;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/wallet-users")
@@ -35,4 +33,20 @@ public class UserController {
 
         return null;
     }
+    @GetMapping("/getUserExistence/{id}")
+    public ResponseEntity<Boolean> checkExistenceById(@PathVariable("id") Long userId){
+        return new ResponseEntity<>(userOperationsService.checkUserById(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/getUserDetails/{id}")
+    public ResponseEntity<User> fetchUserById(@PathVariable("id") Long userId){
+        return new ResponseEntity<>(userOperationsService.fetchUserById(userId), HttpStatus.OK);
+    }
+
+    @DeleteMapping("deleteUser/{id}")
+    public ResponseEntity<String> deleteById(@PathVariable("id") Long id){
+            String message = userOperationsService.deleteUser(id);
+            return new ResponseEntity<>(message, HttpStatus.OK);
+    }
+
 }
