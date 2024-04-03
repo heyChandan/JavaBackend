@@ -18,6 +18,7 @@
         <module>user_service</module>
         <module>wallet_service</module>
         <module>wallet_library</module>
+        <module>notification_service</module>
     </modules>
     <properties>
 		<java.version>17</java.version>

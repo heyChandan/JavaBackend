@@ -58,9 +58,16 @@
             <version>1.18.32</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>com.jbdl</groupId>
             <artifactId>wallet_library</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jbdl</groupId>
+            <artifactId>notification_service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

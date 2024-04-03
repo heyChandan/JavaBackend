@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jbdl.constants.TopicConstants;
 import com.jbdl.dto.UserResponseDto;
+import com.jbdl.dto.UserWalletCreationRequest;
 import com.jbdl.model.User;
 import com.jbdl.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -12,8 +13,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.Future;
 
 @Slf4j
@@ -31,8 +30,13 @@ public class UserOperationsService {
 
     public UserResponseDto createUserAccount(User user) throws JsonProcessingException {
         User savedUser = userRepository.save(user);
-        //This Map Object message will be sent
-        Map<String,Long> walletCreationRequest = Map.of("userId", savedUser.getId());
+        //This dto Object will be messaged
+        UserWalletCreationRequest walletCreationRequest = UserWalletCreationRequest.builder()
+                .userId(savedUser.getId())
+                .userName(savedUser.getUserFullName())
+                .userEmailId(savedUser.getUserEmailId())
+                .build();
+
         log.info( String.format("User Account is created for userId %d ,and userName %s", user.getId(), user.getUserFullName()));
         Future<SendResult<String, String>> send = kafkaTemplate.send(TopicConstants.USER_CREATION_TOPIC, savedUser.getId().toString(), objectMapper.writeValueAsString(walletCreationRequest));
         return UserResponseDto.builder()
